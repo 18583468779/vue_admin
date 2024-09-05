@@ -2,10 +2,9 @@ import { createApp } from "vue";
 import "./style.css";
 import App from "./App.vue";
 import router from "./router";
-import ElementPlus from "element-plus";
-import "element-plus/dist/index.css";
+import { setUpElementUi } from "./plugins/element";
 
 const app = createApp(App);
 app.use(router);
-app.use(ElementPlus);
+setUpElementUi(app);
 app.mount("#app");
