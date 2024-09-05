@@ -1,7 +1,8 @@
 <template>
     <div>
-        关于我们234234
+        admin 后台页面
     </div>
+    <router-view></router-view>
 </template>
 
 <script lang="ts" setup>

@@ -1,7 +1,8 @@
 <template>
     <div>
-        主页2342342
+        front 前台页面
     </div>
+    <router-view></router-view>
 </template>
 
 <script lang="ts" setup>
