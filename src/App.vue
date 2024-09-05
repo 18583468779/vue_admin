@@ -1,10 +1,13 @@
-<script setup lang="ts">
-</script>
-
 <template>
-  <h1 class="text-3xl font-bold underline text-violet-800">
-    Hello world!
-  </h1>
+  <h1>Hello App!</h1>
+
+  <nav>
+    <RouterLink to="/">Go to Home</RouterLink>
+    <RouterLink to="/about">Go to About</RouterLink>
+  </nav>
+  <main>
+    <RouterView />
+  </main>
 </template>
 
 <style scoped></style>
