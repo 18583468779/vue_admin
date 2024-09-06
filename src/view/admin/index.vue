@@ -1,8 +1,8 @@
 <template>
-    <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" :ellipsis="false" @select="handleSelect">
+    <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" :ellipsis="false"
+        @select="handleSelect">
         <el-menu-item index="0">
-            HtmlCode Admin
-
+            <el-text tag="b" size="large"> HtmlCode 后台管理系统</el-text>
         </el-menu-item>
         <el-menu-item index="1" @click="handleChangeMenu">
             <el-icon v-if="isCollapse">
@@ -13,6 +13,24 @@
             </el-icon>
         </el-menu-item>
         <el-menu-item index="2">
+            <div>
+
+            </div>
+            <el-popover placement="bottom" title="通知" :width="250" trigger="click">
+
+                <template #reference>
+                    <el-badge :value="12" :offset="[-5, 20]" max="99" class="item">
+                        <el-icon :size="30">
+                            <Message />
+                        </el-icon>
+                    </el-badge>
+                </template>
+                <div class="flex flex-wrap gap-4">
+                    <el-card style="width: 480px" shadow="hover" class="cursor-pointer">Always</el-card>
+                    <el-card style="width: 480px" shadow="hover" class="cursor-pointer">Hover</el-card>
+                    <el-card style="width: 480px" shadow="hover" class="cursor-pointer">Never</el-card>
+                </div>
+            </el-popover>
         </el-menu-item>
         <el-sub-menu index="3">
             <template #title>
@@ -28,10 +46,10 @@
                 个人中心
             </el-menu-item>
             <el-menu-item index="3-2">
-                    <el-icon>
-                        <Back />
-                    </el-icon>
-                    退出登录
+                <el-icon>
+                    <Back />
+                </el-icon>
+                退出登录
             </el-menu-item>
         </el-sub-menu>
     </el-menu>
