@@ -1,6 +1,5 @@
 <template>
-    <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" :ellipsis="false"
-        @select="handleSelect">
+    <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" :ellipsis="false" @select="handleSelect">
         <el-menu-item index="0">
             HtmlCode Admin
 
@@ -13,18 +12,27 @@
                 <Fold />
             </el-icon>
         </el-menu-item>
-        <el-menu-item index="2">HtmlCode Admin</el-menu-item>
+        <el-menu-item index="2">
+        </el-menu-item>
         <el-sub-menu index="3">
-            <template #title>Workspace</template>
-            <el-menu-item index="3-1">item one</el-menu-item>
-            <el-menu-item index="3-2">item two</el-menu-item>
-            <el-menu-item index="3-3">item three</el-menu-item>
-            <el-sub-menu index="3-4">
-                <template #title>item four</template>
-                <el-menu-item index="3-4-1">item one</el-menu-item>
-                <el-menu-item index="3-4-2">item two</el-menu-item>
-                <el-menu-item index="3-4-3">item three</el-menu-item>
-            </el-sub-menu>
+            <template #title>
+                <el-icon>
+                    <User />
+                </el-icon>
+                个人中心
+            </template>
+            <el-menu-item index="3-1">
+                <el-icon>
+                    <User />
+                </el-icon>
+                个人中心
+            </el-menu-item>
+            <el-menu-item index="3-2">
+                    <el-icon>
+                        <Back />
+                    </el-icon>
+                    退出登录
+            </el-menu-item>
         </el-sub-menu>
     </el-menu>
     <el-menu default-active="2" class="el-menu-vertical-demo " :collapse="isCollapse" @open="handleOpen"
