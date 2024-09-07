@@ -13,13 +13,10 @@
             </el-icon>
         </el-menu-item>
         <el-menu-item index="2">
-            <div>
-
-            </div>
             <el-popover placement="bottom" title="通知" :width="250" trigger="click">
 
                 <template #reference>
-                    <el-badge :value="12" :offset="[-5, 20]" max="99" class="item">
+                    <el-badge :value="12" :offset="[-5, 20]" class="item">
                         <el-icon :size="30">
                             <Message />
                         </el-icon>
@@ -32,7 +29,11 @@
                 </div>
             </el-popover>
         </el-menu-item>
-        <el-sub-menu index="3">
+        <el-menu-item index="3">
+            <el-switch v-model="value1" :active-action-icon="Sunny" :inactive-action-icon="Moon"
+                style=" --el-switch-off-color: #333" />
+        </el-menu-item>
+        <el-sub-menu index="4">
             <template #title>
                 <el-icon>
                     <User />
@@ -95,29 +96,38 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, watchEffect } from 'vue'
 import {
     Document,
     Menu as IconMenu,
     Location,
     Setting,
+    Sunny, Moon
 } from '@element-plus/icons-vue'
-
 const isCollapse = ref(false);
+const value1 = ref(true);
 
+watchEffect(() => {
+    console.log(value1.value)
+    if (value1.value) {
+        document.documentElement.classList.add('dark')
+    } else {
+        document.documentElement.classList.remove('dark')
+    }
+})
 const handleChangeMenu = () => {
     // 左侧菜单隐藏展开
     isCollapse.value = !isCollapse.value;
 }
 const handleOpen = (key: string, keyPath: string[]) => {
-    console.log(key, keyPath)
+    // console.log(key, keyPath)
 }
 const handleClose = (key: string, keyPath: string[]) => {
-    console.log(key, keyPath)
+    // console.log(key, keyPath)
 }
 const activeIndex = ref('1')
 const handleSelect = (key: string, keyPath: string[]) => {
-    console.log(key, keyPath)
+    // console.log(key, keyPath)
 }
 </script>
 
