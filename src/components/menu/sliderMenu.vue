@@ -1,52 +1,26 @@
 <template>
-    <el-menu default-active="2" class="el-menu-vertical-demo " :collapse="isCollapse" @open="handleOpen"
+    <el-menu default-active="1-2" class="el-menu-vertical-demo" :collapse="isCollapse" @open="handleOpen"
         @close="handleClose">
-        <el-sub-menu index="1">
+
+        <el-sub-menu :index="index" v-for="(menu, index) in menuData" :key="menu.id">
             <template #title>
                 <el-icon>
-                    <location />
+                    <component :is="menu.icon" />
                 </el-icon>
-                <span>Navigator One</span>
+                <span>{{ menu.title }}</span>
             </template>
-            <el-menu-item-group>
-                <template #title><span>Group One</span></template>
-                <el-menu-item index="1-1">item one</el-menu-item>
-                <el-menu-item index="1-2">item two</el-menu-item>
+            <el-menu-item-group v-show="menu.children!.length > 0" v-for="(group, groupIdx) in menu.children"
+                :key="group.id">
+                <template #title><span>{{ group.title }}</span></template>
+                <el-menu-item :index="index + '-' + groupIdx" v-for="(gChild) in group.group" :key="gChild.id">
+                    {{ gChild.title }}
+                </el-menu-item>
             </el-menu-item-group>
-            <el-menu-item-group title="Group Two">
-                <el-menu-item index="1-3">item three</el-menu-item>
-            </el-menu-item-group>
-            <el-sub-menu index="1-4">
-                <template #title><span>item four</span></template>
-                <el-menu-item index="1-4-1">item one</el-menu-item>
-            </el-sub-menu>
         </el-sub-menu>
-        <el-menu-item index="2">
-            <el-icon><icon-menu /></el-icon>
-            <template #title>Navigator Two</template>
-        </el-menu-item>
-        <el-menu-item index="3" disabled>
-            <el-icon>
-                <document />
-            </el-icon>
-            <template #title>Navigator Three</template>
-        </el-menu-item>
-        <el-menu-item index="4">
-            <el-icon>
-                <setting />
-            </el-icon>
-            <template #title>Navigator Four</template>
-        </el-menu-item>
     </el-menu>
 </template>
 
 <script lang="ts" setup>
-import {
-    Document,
-    Menu as IconMenu,
-    Location,
-    Setting,
-} from '@element-plus/icons-vue';
 import { v4 as uuidv4 } from 'uuid';
 import { ref } from 'vue';
 type Props = {
@@ -63,24 +37,44 @@ const handleClose = (key: string, keyPath: string[]) => {
 
 const uuid1 = uuidv4();
 
-const initData = [
+const initData: Array<TSliderMenu> = [
     {
-        id: uuid1, title: '基础菜单', icon: 'icon-menu', children: [
+        id: uuid1, title: '基础菜单', icon: 'document', children: [
             {
-                id: uuidv4(), parentId: uuid1, title: '配置菜单', url: '/'
+                id: uuidv4(), parentId: uuid1, title: '菜单组', group: [
+                    {
+                        id: uuidv4(), parentId: uuid1, title: '配置菜单1', url: '/'
+                    },
+                    {
+                        id: uuidv4(), parentId: uuid1, title: '配置菜单2', url: '/'
+                    },
+                ]
             },
             {
-                id: uuidv4(), parentId: uuid1, title: '工作台', url: '/'
+                id: uuidv4(), parentId: uuid1, title: '工作台', group: [
+                    {
+                        id: uuidv4(), parentId: uuid1, title: '工作台1', url: '/'
+                    },
+                    {
+                        id: uuidv4(), parentId: uuid1, title: '工作台2', url: '/'
+                    },
+                ]
             },
             {
-                id: uuidv4(), parentId: uuid1, title: '统计报表', url: '/'
+                id: uuidv4(), parentId: uuid1, title: '统计报表', group: [
+                    {
+                        id: uuidv4(), parentId: uuid1, title: '统计报表1', url: '/'
+                    },
+                    {
+                        id: uuidv4(), parentId: uuid1, title: '统计报表2', url: '/'
+                    },
+                ]
             }
         ]
     }
 ];
 
-
-const menuData = ref([]);
+const menuData = ref<Array<TSliderMenu>>([]);
 
 setTimeout(() => {
     menuData.value = initData;
