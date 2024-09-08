@@ -1,7 +1,17 @@
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import { UserConfigExport, ConfigEnv } from "vite";
 
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [vue()],
-})
+import { viteMockServe } from "vite-plugin-mock";
+import vue from "@vitejs/plugin-vue";
+
+export default ({ command }: ConfigEnv): UserConfigExport => {
+  return {
+    plugins: [
+      vue(),
+      viteMockServe({
+        // default
+        mockPath: "mock",
+        enable: command === "serve",
+      }),
+    ],
+  };
+};
