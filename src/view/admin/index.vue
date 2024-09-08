@@ -64,6 +64,8 @@ import {
     Sunny, Moon
 } from '@element-plus/icons-vue';
 import sliderMenu from '../../components/menu/sliderMenu.vue';
+import { http } from '../../axios';
+import { nextTick } from 'vue';
 const isCollapse = ref(false);
 const value1 = ref(true);
 
@@ -82,7 +84,19 @@ const handleChangeMenu = () => {
 const activeIndex = ref('1')
 const handleSelect = (key: string, keyPath: string[]) => {
     console.log(key, keyPath)
-}
+};
+
+
+
+
+nextTick(async () => {
+    const res = await http.request({
+        url: 'info',
+        method: 'get'
+    });
+    console.log('res', res)
+})
+
 </script>
 
 <style lang="scss" scoped>

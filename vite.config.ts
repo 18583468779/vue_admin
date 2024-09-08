@@ -13,5 +13,12 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
         enable: command === "serve",
       }),
     ],
+    server: {
+      proxy: {
+        "/api": {
+          target: "http://localhost:5173",
+        },
+      },
+    },
   };
 };
