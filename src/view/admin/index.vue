@@ -64,8 +64,6 @@ import {
     Sunny, Moon
 } from '@element-plus/icons-vue';
 import sliderMenu from '../../components/menu/sliderMenu.vue';
-import { http } from '../../axios';
-import { nextTick } from 'vue';
 const isCollapse = ref(false);
 const value1 = ref(true);
 
@@ -87,15 +85,6 @@ const handleSelect = (key: string, keyPath: string[]) => {
 };
 
 
-
-
-nextTick(async () => {
-    const { data } = await http.request<TSliderMenu>({
-        url: 'menu',
-        method: 'get'
-    });
-    console.log('res', data)
-})
 
 </script>
 
