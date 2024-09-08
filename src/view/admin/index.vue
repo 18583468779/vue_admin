@@ -90,11 +90,11 @@ const handleSelect = (key: string, keyPath: string[]) => {
 
 
 nextTick(async () => {
-    const res = await http.request({
-        url: 'info',
+    const { data } = await http.request<TSliderMenu>({
+        url: 'menu',
         method: 'get'
     });
-    console.log('res', res)
+    console.log('res', data)
 })
 
 </script>

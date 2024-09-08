@@ -8,11 +8,11 @@ export class Axios {
     // 创建拦截器
     this.interceptors();
   }
-  public request(config: AxiosRequestConfig): Promise<any> {
+  public request<T, D = TResponse<T>>(config: AxiosRequestConfig): Promise<D> {
     return new Promise(async (resolve, reject) => {
       try {
-        const res = await this.instance.request(config);
-        resolve(res);
+        const res = await this.instance.request<D>(config);
+        resolve(res.data);
       } catch (error) {
         reject(error);
       }
